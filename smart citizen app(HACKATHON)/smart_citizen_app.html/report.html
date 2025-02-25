@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Citizen App - Report</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <h1>Report an Issue</h1>
+        <form id="citizenForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="issue">Report an Issue:</label>
+            <textarea id="issue" name="issue" rows="4" required></textarea>
+
+            <label for="emergency">Emergency:</label>
+            <input type="checkbox" id="emergency" name="emergency">
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="Enter location">
+
+            <div id="map"></div>
+
+            <div id="trafficUpdates">
+                <h2>Traffic Updates</h2>
+                <ul>
+                    <!-- Traffic updates will be dynamically added here -->
+                </ul>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+        <a href="index.html">Back to Home</a>
+    </div>
+
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8
+            });
+        }
+
+        function fetchTrafficUpdates() {
+            var trafficUpdates = document.getElementById('trafficUpdates');
+            var updateList = document.createElement('ul');
+            var updateItem = document.createElement('li');
+            updateItem.innerText = 'Heavy traffic reported on Main Street.';
+            updateList.appendChild(updateItem);
+            trafficUpdates.appendChild(updateList);
+        }
+
+        fetchTrafficUpdates();
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+    <script src="app.js"></script>
+</body>
+</html>
